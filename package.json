@@ -1,0 +1,38 @@
+{
+  "name": "wdt-skywise-tiles-leaflet",
+  "version": "1.0.0",
+  "description": "Leaflet plugin to display Skywise Tiles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "documentation readme index.js  --section api",
+    "eslint": "./node_modules/eslint/bin/eslint.js -c .eslintrc lib/**/*.js lib/*.js *.js",
+    "watch": "watchify index.js src/*.js -o dist/skywise-tiles.src.js -dv",
+    "browserify-google": "browserify google.js > dist/skywise-tiles.google.src.js",
+    "uglify-google": "uglifyjs dist/skywise-tiles.google.src.js > dist/skywise-tiles.google.js",
+    "build-google": "npm run browserify-google && npm run uglify-google",
+    "browserify-leaflet": "browserify leaflet.js > dist/skywise-tiles.leaflet.src.js",
+    "uglify-leaflet": "uglifyjs dist/skywise-tiles.leaflet.src.js > dist/skywise-tiles.leaflet.js",
+    "build-leaflet": "npm run browserify-leaflet && npm run uglify-leaflet",
+    "browserify-mapbox": "browserify mapbox.js > dist/skywise-tiles.mapbox.src.js",
+    "uglify-mapbox": "uglifyjs dist/skywise-tiles.mapbox.src.js > dist/skywise-tiles.mapbox.js",
+    "build-mapbox": "npm run browserify-mapbox && npm run uglify-mapbox",
+    "browserify-mapbox-gl": "browserify mapbox-gl.js > dist/skywise-tiles.mapbox-gl.src.js",
+    "uglify-mapbox-gl": "uglifyjs dist/skywise-tiles.mapbox-gl.src.js > dist/skywise-tiles.mapbox-gl.js",
+    "build-mapbox-gl": "npm run browserify-mapbox-gl && npm run uglify-mapbox-gl"
+  },
+  "author": "Jordan Rousseau",
+  "license": "MIT",
+  "dependencies": {
+    "es6-object-assign": "^1.0.2",
+    "es6-promise": "^3.2.1",
+    "whatwg-fetch": "^1.0.0"
+  },
+  "devDependencies": {
+    "documentation": "^4.0.0-beta5",
+    "eslint": "^2.13.1",
+    "browserify": "^13.0.0",
+    "uglify-js": "^2.6.1",
+    "watchify": "^3.7.0"
+  }
+}

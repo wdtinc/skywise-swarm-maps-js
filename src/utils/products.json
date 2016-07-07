@@ -1,0 +1,21 @@
+{
+  "nalowaltradarcontours": 300,
+  "globalirgrid": 1800,
+  "troppasttrack": 600,
+  "tropcurpos": 600,
+  "tropfcsttrack": 600,
+  "tropfcastfan": 600,
+  "tropmodels": 600,
+  "tropinvest": 600,
+  "watchwarn": 120,
+  "sigww": 120,
+  "sfctempcontours": 1800,
+  "sfcdwptcontours": 1800,
+  "sfcrhcontours": 1800,
+  "sfcwspdcontours": 1800,
+  "echotops": 60,
+  "hail": 60,
+  "meso": 60,
+  "stormvectors": 60,
+  "tvs": 60
+}
