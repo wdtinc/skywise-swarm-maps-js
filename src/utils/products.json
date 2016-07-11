@@ -1,21 +1,78 @@
 {
-  "nalowaltradarcontours": 300,
-  "globalirgrid": 1800,
-  "troppasttrack": 600,
-  "tropcurpos": 600,
-  "tropfcsttrack": 600,
-  "tropfcastfan": 600,
-  "tropmodels": 600,
-  "tropinvest": 600,
-  "watchwarn": 120,
-  "sigww": 120,
-  "sfctempcontours": 1800,
-  "sfcdwptcontours": 1800,
-  "sfcrhcontours": 1800,
-  "sfcwspdcontours": 1800,
-  "echotops": 60,
-  "hail": 60,
-  "meso": 60,
-  "stormvectors": 60,
-  "tvs": 60
+	"nalowaltradarcontours": {
+		"refresh": 300,
+		"id": "nalowaltradarcontours"
+	},
+	"globalirgrid": {
+		"refresh": 1800,
+		"id": "globalirgrid"
+	},
+	"troppasttrack": {
+		"refresh": 600,
+		"id": "troppasttrack"
+	},
+	"tropcurpos": {
+		"refresh": 600,
+		"id": "tropcurpos"
+	},
+	"tropfcsttrack": {
+		"refresh": 600,
+		"id": "tropfcsttrack"
+	},
+	"tropfcastfan": {
+		"refresh": 600,
+		"id": "tropfcastfan"
+	},
+	"tropmodels": {
+		"refresh": 600,
+		"id": "tropmodels"
+	},
+	"tropinvest": {
+		"refresh": 600,
+		"id": "tropinvest"
+	},
+	"watchwarn": {
+		"refresh": 120,
+		"id": "watchwarn"
+	},
+	"sigww": {
+		"refresh": 120,
+		"id": "sigww"
+	},
+	"sfctempcontours": {
+		"refresh": 1800,
+		"id": "sfctempcontours"
+	},
+	"sfcdwptcontours": {
+		"refresh": 1800,
+		"id": "sfcdwptcontours"
+	},
+	"sfcrhcontours": {
+		"refresh": 1800,
+		"id": "sfcrhcontours"
+	},
+	"sfcwspdcontours": {
+		"refresh": 1800,
+		"id": "sfcwspdcontours"
+	},
+	"echotops": {
+		"refresh": 60,
+		"id": "echotops"
+	},
+	"hail": {
+		"refresh": 60,
+		"id": "hail"
+	},
+	"meso": {
+		"refresh": 60,
+		"id": "meso"
+	},
+	"stormvectors": {
+		"refresh": 60,
+		"id": "stormvectors"
+	},
+	"tvs": {
+		"refresh": 60,
+		"id": "tvs"
+	}
 }

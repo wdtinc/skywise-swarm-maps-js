@@ -1,4 +1,4 @@
-require('es6-promise').polyfill();
+'use strict';
 require('whatwg-fetch');
 var fetch_utils = require('./fetch-utils');
 var consts = require('./consts');
@@ -8,10 +8,9 @@ var consts = require('./consts');
  * @param  {[String]}   product_id  id of the product to fetch valid frames
  * @param  {[String]}   app_id   3scale application id
  * @param  {[String]}   app_key  3scale application key
- * @param  {validFrameCallback} callback the callback that handles the response of the valid frames request
+ * @param  {[String]}   system System that serves tiles
  */
-module.exports = function get_valid_frames(product_id, app_id, app_key, callback) {
-  'use strict';
+module.exports = function get_valid_frames(product_id, app_id, app_key) {
   var skywise_url = [
     consts.domain,
     'swarmweb',
@@ -23,7 +22,7 @@ module.exports = function get_valid_frames(product_id, app_id, app_key, callback
       'app_key': app_key
     }
   };
-  return fetch(skywise_url, skywise_opts).then(fetch_utils.checkStatus).then(fetch_utils.parseJSON)
+  return fetch(skywise_url, skywise_opts).then(fetch_utils.checkStatus).then(fetch_utils.parseJSON);
 };
 
 /**
