@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WDT SkyWise Tiles (Mapbox.js)</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+    <style>
+      body { margin:0; padding:0; }
+      #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+    </head>
+    <body>
+      <div id="map"></div>
+      <script src="../dist/skywise-tiles.mapbox.src.js"></script>
+      <script src="../dist/keys.js"></script>
+    	<script>
+        L.mapbox.accessToken = window.demo_keys.mapbox_access_token;
+        var skywise_app_id = window.demo_keys.skywise_app_id;
+        var skywise_token = window.demo_keys.skywise_token
+
+        var map = L.mapbox.map('map', 'weatherdecisiontechnologies.map-liq6plhu')
+          .setView([38.5, -95], 5);
+
+
+        var skywise = WDT.skywise_tiles_mapbox(map, skywise_app_id, skywise_token);
+        skywise.addTile('nalowaltradarcontours');
+
+      </script>
+    </body>
+</html>

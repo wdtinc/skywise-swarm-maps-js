@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WDT SkyWise Tiles (LeafletJS)</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+    <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+    <style>
+      body { margin:0; padding:0; }
+      #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+    </head>
+    <body>
+      <div id="map"></div>
+      <script src="../dist/skywise-tiles.leaflet.src.js"></script>
+      <script src="../dist/keys.js"></script>
+    	<script>
+        var accessToken = window.demo_keys.mapbox_access_token;
+        var skywise_app_id = window.demo_keys.skywise_app_id;
+        var skywise_token = window.demo_keys.skywise_token
+        var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/weatherdecisiontechnologies.map-liq6plhu/{z}/{x}/{y}.png?access_token=' + accessToken, {
+          attribution: '&copy; <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        });
+
+        var map = L.map('map')
+          .addLayer(mapboxTiles)
+          .setView([38.5,-95], 5);
+
+        var skywise = WDT.skywise_tiles_leaflet(map, skywise_app_id, skywise_token);
+        skywise.addTile('nalowaltradarcontours');
+
+      </script>
+    </body>
+</html>
