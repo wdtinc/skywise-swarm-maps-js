@@ -26,10 +26,10 @@ var addCopyright = function addCopyright(map) {
   control.push(outerdiv);
 };
 
-function getFrameIndex(map, product_id) {
+function getFrameIndex(map, layer_id) {
   var returnIndex = -1;
   map.overlayMapTypes.forEach(function(element, index) {
-    if (element.name === product_id) {
+    if (element.name === layer_id) {
       returnIndex = index;
     }
   });
@@ -37,14 +37,18 @@ function getFrameIndex(map, product_id) {
 }
 
 function refreshLayer(options) {
-  var frame_index = getFrameIndex(options.map, options.product_id);
+  var frame_index = getFrameIndex(options.map, options.layer_id);
   var maptype = options.map.overlayMapTypes.removeAt(frame_index);
   options.map.overlayMapTypes.insertAt(frame_index, maptype);
 }
 
 var GoogleRenderer = function(opts) {
   var options = opts;
-  var maptype = skywise_imagemaptype(options);
+  options.opacity = options.opacity || 1;
+  options.maxzoom = 22;
+  var maptype = skywise_imagemaptype(Object.assign(options, {
+    opacity: options.hidden ? 0 : options.opacity
+  }));
   this.addTo = function addTo(map) {
     Object.assign(options, {
       map: map
@@ -56,7 +60,7 @@ var GoogleRenderer = function(opts) {
     Object.assign(options, {
       map: null
     });
-    var index = getFrameIndex(map, options.product_id);
+    var index = getFrameIndex(map, options.layer_id);
     map.overlayMapTypes.removeAt(index);
   };
   this.setFrame = function setFrame(frame) {
@@ -73,11 +77,21 @@ var GoogleRenderer = function(opts) {
     maptype.setStyle(style);
     refreshLayer(options);
   };
+  this.setOpacity = function setOpacity(opacity) {
+    options.opacity = opacity;
+    maptype.setOpacity(opacity);
+  };
+  this.hide = function hide() {
+    maptype.setOpacity(0);
+  };
+  this.show = function show() {
+    maptype.setOpacity(options.opacity);
+  };
 };
 
 module.exports = function(options) {
-  if (!options || !options.product_id || !options.frame || !options.style) {
-    console.error("product_id, frame, and style in options object are required");
+  if (!options || !options.layer_id || !options.frame || !options.style) {
+    console.error("layer_id, frame, and style in options object are required");
     return null;
   }
   return new GoogleRenderer(options);

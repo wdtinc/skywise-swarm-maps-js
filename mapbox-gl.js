@@ -1,4 +1,4 @@
-var SkywiseRasterTiles = require('./src/skywise-raster-tiles');
+var SkywiseRasterTiles = require('./src/skywise-tiles');
 var mapboxgl_renderer = require('./src/renderers/mapbox-gl');
 var WDT = {
   version: require('./package').version,

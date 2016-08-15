@@ -4,7 +4,9 @@
     "node": true,
     "amd": false
   },
-
+  "globals": {
+    "Promise": true
+  },
   "rules": {
     "no-alert": 2,
     "no-array-constructor": 2,

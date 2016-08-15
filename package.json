@@ -1,11 +1,11 @@
 {
-  "name": "wdt-skywise-tiles",
+  "name": "skywise-swarm-maps-js",
   "version": "1.1.0",
   "description": "Plugin to display Skywise Tiles on multiple platforms",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs": "documentation readme *.js  --section api",
+    "docs": "documentation readme *.js  --section Interface",
     "eslint": "./node_modules/eslint/bin/eslint.js -c .eslintrc src/**/*.js src/*.js *.js",
     "watch:google": "watchify google.js src/*.js -o dist/skywise-tiles.google.src.js -dv",
     "watch:leaflet": "watchify leaflet.js src/*.js -o dist/skywise-tiles.leaflet.src.js -dv",
@@ -28,14 +28,18 @@
   "author": "Jordan Rousseau",
   "license": "MIT",
   "dependencies": {
+    "array-find-polyfill": "^0.1.0",
     "es6-object-assign": "^1.0.2",
     "es6-promise": "^3.2.1",
+    "geojson-extent": "^0.3.2",
+    "raf": "^3.2.0",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
-    "documentation": "^4.0.0-beta5",
-    "eslint": "^2.13.1",
     "browserify": "^13.0.0",
+    "documentation": "^4.0.0-beta9",
+    "eslint": "^2.13.1",
+    "npm-run-all": "^2.3.0",
     "uglify-js": "^2.6.1",
     "watchify": "^3.7.0"
   }

@@ -1,35 +1,49 @@
 'use strict';
-var tile_json = require('../../utils/tile-json');
+var gl_layer = require('../../utils/gl-layer');
 
 function refreshLayer(opts) {
-  var tilejson = tile_json(opts);
-  opts.map.removeSource(opts.product_id + "-source");
-  opts.map.addSource(opts.product_id + "-source", tilejson);
+  var tilejson = opts.frame;
+  opts.map.removeSource(opts.source_id);
+  opts.map.addSource(opts.source_id, Object.assign(tilejson, {
+    "type": opts.type,
+    "tileSize": opts.tilesize,
+    "headers": {
+      "Accept": opts.contentType + '; version=1'
+    }
+  }));
 }
 
 var MapboxGLRenderer = function(opts) {
   var options = opts;
+  options.opacity = options.opacity || 1;
   this.addTo = function addTo(map) {
     Object.assign(options, {
       map: map
     });
-    var tilejson = tile_json(options);
-    map.addSource(options.product_id + "-source", tilejson);
-    map.addLayer({
-      'id': options.product_id,
+    var tilejson = options.frame;
+    console.log(options.source_id);
+    map.addSource(options.source_id, Object.assign(tilejson, {
       "type": "raster",
-      "source": options.product_id + "-source",
-      "minzoom": 0,
-      "maxzoom": 22
-    }, 'barrier_line-land-line');
+      "tileSize": options.frame.tileSize,
+      "headers": {
+        "Accept": options.contentType + '; version=1'
+      }
+    }));
+
+    options.gl_layers = gl_layer(options);
+    options.gl_layers.forEach(function (layer) {
+      map.addLayer(layer, 'barrier_line-land-line');
+    });
   };
 
   this.removeFrom = function removeFrom(map) {
     Object.assign(options, {
       map: null
     });
-    map.removeLayer(options.product_id);
-    map.removeSource(options.product_id + "-source");
+    options.gl_layers.forEach(function (layer) {
+      map.removeLayer(layer);
+    });
+    map.removeSource(options.source_id);
   };
 
   this.setFrame = function setFrame(frame) {
@@ -45,13 +59,32 @@ var MapboxGLRenderer = function(opts) {
     });
     refreshLayer(options);
   };
+
+  this.setOpacity = function (opacity) {
+    options.gl_layers.forEach(function (layer) {
+      options.map.setPaintProperty(layer.id, options.paint_property + '-opacity', opacity);
+    });
+  };
+
+  this.hide = function () {
+    options.gl_layers.forEach(function (layer) {
+      options.map.setPaintProperty(layer.id, options.paint_property + '-opacity', 0);
+    });
+  };
+
+  this.show = function () {
+    options.gl_layers.forEach(function (layer) {
+      options.map.setPaintProperty(layer.id, options.paint_property + '-opacity', options.opacity);
+    });
+  };
 };
 
 
 module.exports = function(options) {
-  if (!options || !options.product_id || !options.frame || !options.style) {
-    console.error("product_id, frame, and style in options object are required");
+  if (!options || !options.layer_id || !options.frame) {
+    console.error("layer_id, frame in options object are required");
     return null;
   }
+  options.type = options.type || "raster";
   return new MapboxGLRenderer(options);
 };

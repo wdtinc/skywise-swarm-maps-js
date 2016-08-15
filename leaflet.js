@@ -1,4 +1,4 @@
-var SkywiseRasterTiles = require('./src/skywise-raster-tiles');
+var SkywiseRasterTiles = require('./src/skywise-tiles');
 var leaflet_renderer = require('./src/renderers/leaflet');
 var WDT = {
   version: require('./package').version,

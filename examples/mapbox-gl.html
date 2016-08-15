@@ -29,7 +29,7 @@
         map.addControl(new mapboxgl.Navigation());
         var skywise = WDT.skywise_tiles_mapboxgl(map, skywise_app_id, skywise_token);
         map.on('load', function (e) {
-              skywise.addTile('nalowaltradarcontours');
+              skywise.add('nalowaltradarcontours');
         });
 
       </script>

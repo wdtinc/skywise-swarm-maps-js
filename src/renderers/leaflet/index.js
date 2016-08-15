@@ -1,9 +1,15 @@
+/*global L*/
 'use strict';
 var skywise_tilelayer = require('./TileLayer.Skywise');
 
 var LeafletRenderer = function(opts) {
   var options = opts;
-  var tilelayer = skywise_tilelayer(options);
+  options.opacity = options.opacity || 1;
+  var bounds_array = options.frame.bounds;
+  options.bounds = [[bounds_array[1], bounds_array[0]], [bounds_array[3], bounds_array[2]]];
+  var tilelayer = skywise_tilelayer(Object.assign(options, {
+    opacity: options.hidden ? 0 : options.opacity
+  }));
   this.addTo = function addTo(map) {
     Object.assign(options, {
       map: map
@@ -28,14 +34,23 @@ var LeafletRenderer = function(opts) {
     });
     tilelayer.setStyle(style);
   };
+  this.setOpacity = function setOpacity(opacity) {
+    options.opacity = opacity;
+    tilelayer.setOpacity(opacity);
+  };
+  this.hide = function hide() {
+    tilelayer.setOpacity(0);
+  };
+  this.show = function show() {
+    tilelayer.setOpacity(options.opacity);
+  };
 };
 
 
 module.exports = function(options) {
-  if (!options || !options.product_id || !options.frame || !options.style) {
-    console.error("product_id, frame, and style in options object are required");
+  if (!options || !options.layer_id || !options.frame || !options.style) {
+    console.error("layer_id, frame, and style in options object are required");
     return null;
   }
-  options.attribution = "Weather Data &copy; <a href=\"http://wdtinc.com\" target=\"_blank\">WDT, Inc.</a>";
   return new LeafletRenderer(options);
 };
