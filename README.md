@@ -19,6 +19,12 @@ run the following commands inside the project directory:
 
 Examples can be found in the `examples` directory.
 
+Add your own keys to the `examples/keys.js` file
+
+for Skywise Keys: <https://skywise.wdtinc.com>
+for Google Maps Key: <https://developers.google.com/maps/documentation/javascript/get-api-key>
+for Mapbox Auth Token: <https://www.mapbox.com>
+
 # Interface
 
 ## activeLayer
@@ -36,20 +42,20 @@ Object representing a layer that is registered with plugin
 -   `a` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** the main map object
 -   `b` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** 3scale app_id
 -   `c` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** 3scale app_key
--   `d` **\[type]** the renderer to use, found in renderers directory
+-   `d` **\[Class]** the renderer to use, found in renderers directory
 
 ## add
 
-[addTile description]
+add a layer to the map. layer_id. Product list can be found at <https://skywise.wdtinc.com/root/swarm-docs.html#product_list>
 
 **Parameters**
 
 -   `layer_id` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** identifier of the layer to be added. must be unique
--   `options` **layerOption** [description]
+-   `options` **layerOption** object defining options for rendering the layer
 
 ## remove
 
-[removeTile description]
+remove a layer from the map
 
 **Parameters**
 
@@ -59,7 +65,7 @@ Returns **this**
 
 ## refresh
 
-[refresh description]
+call valid frames and check if the current frame is current. If not, update layer to most recent frame.
 
 **Parameters**
 
@@ -69,7 +75,8 @@ Returns **this**
 
 ## next
 
-[goToNextFrame description]
+For a given layer_id, update the current frame to the next available timestep.
+If at the last timestep, will loop to the first
 
 **Parameters**
 
@@ -79,7 +86,8 @@ Returns **this**
 
 ## previous
 
-[goToPreviousFrame description]
+For a given layer_id, update the current frame to the previous available timestep.
+If at the first timestep, will loop to the last
 
 **Parameters**
 
@@ -128,27 +136,7 @@ set opacity of a given tile layer identified by layer_id
 **Parameters**
 
 -   `opacity` **[Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** value between 0 and 1
+-   `_op`  
 -   `layer_id` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** identifier of the layer. If null, iterates through all layers (optional, default `null`)
 
 Returns **this** 
-
-## valid-frames
-
-get_valid_frames
-
-**Parameters**
-
--   `layer_id` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** id of the product to fetch valid frames
--   `app_id` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** 3scale application id
--   `app_key` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** 3scale application key
--   `system` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** System that serves tiles
--   `product`  
-
-## validFramesCallback
-
-valid_frames_callback
-
-**Parameters**
-
--   `error` **?[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** message from http request
--   `data` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** data back (in JSON) from http request
