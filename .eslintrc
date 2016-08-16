@@ -5,7 +5,8 @@
     "amd": false
   },
   "globals": {
-    "Promise": true
+    "Promise": true,
+    "define": true
   },
   "rules": {
     "no-alert": 2,

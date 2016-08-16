@@ -1,9 +1,9 @@
+'use strict';
 var SkywiseRasterTiles = require('./src/skywise-tiles');
 var google_renderer = require('./src/renderers/google');
 var WDT = {
-  version: require('./package').version,
+  version: "2.0.0",
   skywise_tiles_google: function(map, app_id, app_key) {
-    'use strict';
 
     return new SkywiseRasterTiles(map, app_id, app_key, google_renderer);
   }
