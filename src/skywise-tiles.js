@@ -17,14 +17,14 @@ function get_current_frame_index (frames) {
 /**
  * @module SkywiseTiles
  * @param  {[Object]} a the main map object
- * @param  {[String]} b 3scale app_id
- * @param  {[String]} c 3scale app_key
+ * @param  {[String]} b Skywise app_id
+ * @param  {[String]} c Skywise app_key
  * @param  {[Class]} d the renderer to use, found in renderers directory
  */
 module.exports = function SkywiseTiles(a, b, c, d) {
   var map = a;
-  var app_id = b;
-  var app_key = c;
+  var skywise_app_id = b;
+  var skywise_app_key = c;
   var renderer = d;
   var active_layers = {};
 
@@ -35,7 +35,7 @@ module.exports = function SkywiseTiles(a, b, c, d) {
   }
 
   function refreshSingleProduct(layer_id) {
-    return valid_frames(active_layers[layer_id].product, app_id, app_key).then(function(frames) {
+    return valid_frames(active_layers[layer_id].product, skywise_app_id, skywise_app_key).then(function(frames) {
       active_layers[layer_id].frames = frames;
       var current_frame_index = get_current_frame_index(frames);
       if (frames[current_frame_index].currentTime !== active_layers[layer_id].current_frame.currentTime) {
@@ -61,7 +61,7 @@ module.exports = function SkywiseTiles(a, b, c, d) {
         layer_id: layer_id,
         style: layer_style
     };
-    return valid_frames(product, app_id, app_key).then(function(frames) {
+    return valid_frames(product, skywise_app_id, skywise_app_key).then(function(frames) {
       var current_frame_index = get_current_frame_index(frames);
       var tilelayer = renderer({
         style: layer_style,
@@ -73,6 +73,7 @@ module.exports = function SkywiseTiles(a, b, c, d) {
         return Promise.reject(new Error('Error Initializing Skywise.TileLayer'));
       }
       active_layers[layer_id] = {
+        product: product,
         frames: frames,
         current_frame: frames[current_frame_index],
         tilelayer: tilelayer

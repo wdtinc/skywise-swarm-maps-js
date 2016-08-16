@@ -2,10 +2,10 @@ var SkywiseRasterTiles = require('./src/skywise-tiles');
 var leaflet_renderer = require('./src/renderers/leaflet');
 var WDT = {
   version: "2.0.3",
-  skywise_tiles_leaflet: function(map, app_id, app_key) {
+  skywise_tiles_leaflet: function(map, skywise_app_id, skywise_app_key) {
     'use strict';
 
-    return new SkywiseRasterTiles(map, app_id, app_key, leaflet_renderer);
+    return new SkywiseRasterTiles(map, skywise_app_id, skywise_app_key, leaflet_renderer);
   }
 };
 

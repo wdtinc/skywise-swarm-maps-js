@@ -2,10 +2,10 @@ var SkywiseRasterTiles = require('./src/skywise-tiles');
 var mapboxgl_renderer = require('./src/renderers/mapbox-gl');
 var WDT = {
   version: "2.0.3",
-  skywise_tiles_mapboxgl: function(map, app_id, app_key) {
+  skywise_tiles_mapboxgl: function(map, skywise_app_id, skywise_app_key) {
     'use strict';
 
-    return new SkywiseRasterTiles(map, app_id, app_key, mapboxgl_renderer);
+    return new SkywiseRasterTiles(map, skywise_app_id, skywise_app_key, mapboxgl_renderer);
   }
 };
 
