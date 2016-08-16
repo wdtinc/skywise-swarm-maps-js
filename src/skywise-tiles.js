@@ -65,7 +65,7 @@ module.exports = function SkywiseTiles(a, b, c, d) {
       var current_frame_index = get_current_frame_index(frames);
       var tilelayer = renderer({
         style: layer_style,
-        source_id: layer_id + '-' + frames[current_frame_index] + '-source',
+        source_id: layer_id + '-' + frames[current_frame_index].currentTime + '-source',
         layer_id: layer_id,
         frame: frames[current_frame_index]
       });

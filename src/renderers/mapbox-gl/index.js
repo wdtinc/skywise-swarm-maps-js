@@ -3,28 +3,36 @@ var gl_layer = require('../../utils/gl-layer');
 
 function refreshLayer(opts) {
   var tilejson = opts.frame;
+
+  opts.gl_layers.forEach(function (layer) {
+    opts.map.removeLayer(layer.id);
+  });
   opts.map.removeSource(opts.source_id);
+
+  opts.source_id = opts.layer_id + '-' + tilejson.currentTime + '-source';
   opts.map.addSource(opts.source_id, Object.assign(tilejson, {
-    "type": opts.type,
-    "tileSize": opts.tilesize,
-    "headers": {
-      "Accept": opts.contentType + '; version=1'
-    }
+    "type": "raster",
+    "tileSize": tilejson.tileSize
   }));
+  opts.gl_layers = gl_layer(opts);
+
+  opts.gl_layers.forEach(function (layer) {
+    opts.map.addLayer(layer, 'barrier_line-land-line');
+  });
 }
 
 var MapboxGLRenderer = function(opts) {
   var options = opts;
+  options.paint_property = 'raster';
   options.opacity = options.opacity || 1;
   this.addTo = function addTo(map) {
     Object.assign(options, {
       map: map
     });
     var tilejson = options.frame;
-    console.log(options.source_id);
     map.addSource(options.source_id, Object.assign(tilejson, {
       "type": "raster",
-      "tileSize": options.frame.tileSize,
+      "tileSize": tilejson.tileSize,
       "headers": {
         "Accept": options.contentType + '; version=1'
       }

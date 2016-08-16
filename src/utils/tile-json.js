@@ -7,9 +7,11 @@ var consts = require('./consts');
  * @param  {[String]} frame   string representation of time YYYY-MM-DDTHH:MM:SS
  * @return {[Object]}         a TileJSON object adhering to the specification found at https://github.com/mapbox/tilejson-spec/tree/master/2.0.0
  */
-module.exports = function generateTileJSON(product, frame) {
+module.exports = function generateTileJSON(product, _frame) {
   var layer_id = product.layer_id;
   var style = product.style;
+  var frame = _frame.frame;
+  var index = _frame.index;
 
   return {
     "attribution": "Weather Data &copy; <a href=\"http://wdtinc.com\" target=\"_blank\">WDT, Inc.</a>",
@@ -21,6 +23,7 @@ module.exports = function generateTileJSON(product, frame) {
     "minzoom": 0,
     "type": "raster",
     "currentTime": frame,
+    "index": index,
     "tileSize": 256,
     "name": layer_id,
     "private": false,
