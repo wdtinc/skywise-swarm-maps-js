@@ -1,6 +1,6 @@
 {
   "name": "skywise-swarm-maps-js",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Plugin to display Skywise Tiles on multiple platforms",
   "main": "index.js",
   "scripts": {
