@@ -6,10 +6,11 @@ var consts = require('./consts');
 
 /**
  * get_valid_frames
+ * @private
  * @param  {[String]}   layer_id  id of the product to fetch valid frames
  * @param  {[String]}   app_id   3scale application id
  * @param  {[String]}   app_key  3scale application key
- * @param  {[String]}   system System that serves tiles
+ * @returns {[Promise]} throws error if rejected. Returns Array of valid frames if resolved.
  */
 module.exports = function get_valid_frames(product, app_id, app_key) {
   var skywise_url = [
@@ -29,10 +30,3 @@ module.exports = function get_valid_frames(product, app_id, app_key) {
     });
   });
 };
-
-/**
- * valid_frames_callback
- * @callback validFramesCallback
- * @param {?Object} error message from http request
- * @param {Object} data data back (in JSON) from http request
- */

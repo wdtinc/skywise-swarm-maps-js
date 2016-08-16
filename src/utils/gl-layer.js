@@ -19,3 +19,9 @@ module.exports = function gl_layer(options) {
     }
   }];
 };
+
+/**
+ * Object containing information to build out a given map layer
+ * @private
+ * @typedef {Object} tilelayerOptions
+ */

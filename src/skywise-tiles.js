@@ -19,7 +19,7 @@ function get_current_frame_index (frames) {
  * @param  {[Object]} a the main map object
  * @param  {[String]} b 3scale app_id
  * @param  {[String]} c 3scale app_key
- * @param  {[type]} d the renderer to use, found in renderers directory
+ * @param  {[Class]} d the renderer to use, found in renderers directory
  */
 module.exports = function SkywiseTiles(a, b, c, d) {
   var map = a;
@@ -47,23 +47,24 @@ module.exports = function SkywiseTiles(a, b, c, d) {
   }
 
   /**
-   * [addTile description]
+   * add a layer to the map. layer_id. Product list can be found at https://skywise.wdtinc.com/root/swarm-docs.html#product_list
    * @memberof SkywiseTiles
    * @param {String} [layer_id]  identifier of the layer to be added. must be unique
-   * @param {layerOption} options    [description]
+   * @param {layerOption} options    object defining options for rendering the layer
    */
   this.add = function add(layer_id, options) {
     if (active_layers[layer_id]) {
         return Promise.reject(new Error('Product already added to map'));
     }
+    var layer_style = (options && options.style) || 'default';
     var product = {
         layer_id: layer_id,
-        style: (options && options.style) || 'default'
+        style: layer_style
     };
     return valid_frames(product, app_id, app_key).then(function(frames) {
       var current_frame_index = get_current_frame_index(frames);
       var tilelayer = renderer({
-        style: (options && options.style) || 'default',
+        style: layer_style,
         source_id: layer_id + '-' + frames[current_frame_index] + '-source',
         layer_id: layer_id,
         frame: frames[current_frame_index]
@@ -89,7 +90,7 @@ module.exports = function SkywiseTiles(a, b, c, d) {
   };
 
   /**
-   * [removeTile description]
+   * remove a layer from the map
    * @memberof SkywiseTiles
    * @param {String} [layer_id=null]  identifier of the layer. If null, iterates through all layers
    * @returns {this}
@@ -110,7 +111,7 @@ module.exports = function SkywiseTiles(a, b, c, d) {
   };
 
   /**
-   * [refresh description]
+   * call valid frames and check if the current frame is current. If not, update layer to most recent frame.
    * @memberof SkywiseTiles
    * @param {String} [layer_id=null]  identifier of the layer. If null, iterates through all layers
    * @returns {this}
@@ -131,7 +132,9 @@ module.exports = function SkywiseTiles(a, b, c, d) {
   };
 
   /**
-   * [goToNextFrame description]
+   * For a given layer_id, update the current frame to the next available timestep.
+   * If at the last timestep, will loop to the first
+   *
    * @memberof SkywiseTiles
    * @param {String} [layer_id=null]  identifier of the layer. If null, iterates through all layers
    * @returns {this}
@@ -150,7 +153,9 @@ module.exports = function SkywiseTiles(a, b, c, d) {
   };
 
   /**
-   * [goToPreviousFrame description]
+   * For a given layer_id, update the current frame to the previous available timestep.
+   * If at the first timestep, will loop to the last
+   *
    * @memberof SkywiseTiles
    * @param {String} [layer_id=null]  identifier of the layer. If null, iterates through all layers
    * @returns {this}
@@ -235,13 +240,13 @@ module.exports = function SkywiseTiles(a, b, c, d) {
    * @param {String} [layer_id=null]  identifier of the layer. If null, iterates through all layers
    * @returns {this}
    */
-  this.opacity = function opacity(opacity, layer_id) {
+  this.opacity = function opacity(_op, layer_id) {
     if (!layer_id) {
       for (var id in active_layers) {
-        active_layers[id].tilelayer.setOpacity(opacity);
+        active_layers[id].tilelayer.setOpacity(_op);
       }
     } else if (active_layers[layer_id]) {
-      active_layers[layer_id].tilelayer.setOpacity(opacity);
+      active_layers[layer_id].tilelayer.setOpacity(_op);
     } else {
       console.warn('layer_id not found');
     }

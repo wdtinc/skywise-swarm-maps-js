@@ -1,5 +1,12 @@
 'use strict';
 var consts = require('./consts');
+/**
+ * [exports description]
+ * @private
+ * @param  {[ProductObject]} product
+ * @param  {[String]} frame   string representation of time YYYY-MM-DDTHH:MM:SS
+ * @return {[Object]}         a TileJSON object adhering to the specification found at https://github.com/mapbox/tilejson-spec/tree/master/2.0.0
+ */
 module.exports = function generateTileJSON(product, frame) {
   var layer_id = product.layer_id;
   var style = product.style;
@@ -25,3 +32,11 @@ module.exports = function generateTileJSON(product, frame) {
     "webpage": "http://wdtinc.com/product-service/skywise-tiles/"
   };
 };
+
+/**
+ * object defining a given layer
+ * @private
+* @typedef {Object} ProductObject
+* @property {String} layer_id swarm product name
+* @property {String} style a custom style name for the given layer
+*/
