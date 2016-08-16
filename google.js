@@ -2,7 +2,7 @@
 var SkywiseRasterTiles = require('./src/skywise-tiles');
 var google_renderer = require('./src/renderers/google');
 var WDT = {
-  version: "2.0.0",
+  version: "2.0.3",
   skywise_tiles_google: function(map, app_id, app_key) {
 
     return new SkywiseRasterTiles(map, app_id, app_key, google_renderer);
