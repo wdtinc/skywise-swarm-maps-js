@@ -29,13 +29,6 @@ Add your own keys to the `examples/keys.js` file:
 
 # Interface
 
-## activeLayer
-
-Object representing a layer that is registered with plugin
-
-**Parameters**
-
--   `frames`  
 
 ## SkywiseTiles
 
@@ -63,7 +56,7 @@ remove a layer from the map
 
 -   `layer_id` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** identifier of the layer. If null, iterates through all layers (optional, default `null`)
 
-Returns **this** 
+Returns **this**
 
 ## refresh
 
@@ -73,7 +66,7 @@ call valid frames and check if the current frame is current. If not, update laye
 
 -   `layer_id` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** identifier of the layer. If null, iterates through all layers (optional, default `null`)
 
-Returns **this** 
+Returns **this**
 
 ## next
 
@@ -84,7 +77,7 @@ If at the last timestep, will loop to the first
 
 -   `layer_id` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** identifier of the layer. If null, iterates through all layers (optional, default `null`)
 
-Returns **this** 
+Returns **this**
 
 ## previous
 
@@ -95,7 +88,7 @@ If at the first timestep, will loop to the last
 
 -   `layer_id` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** identifier of the layer. If null, iterates through all layers (optional, default `null`)
 
-Returns **this** 
+Returns **this**
 
 ## get
 
@@ -117,7 +110,7 @@ this can be used in conjuction with [show](#show)
 
 -   `layer_id` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** identifier of the layer. If null, iterates through all layers (optional, default `null`)
 
-Returns **this** 
+Returns **this**
 
 ## show
 
@@ -129,7 +122,7 @@ this can be used in conjuction with [hide](#hide)
 
 -   `layer_id` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** identifier of the layer. If null, iterates through all layers (optional, default `null`)
 
-Returns **this** 
+Returns **this**
 
 ## opacity
 
@@ -141,4 +134,4 @@ set opacity of a given tile layer identified by layer_id
 -   `_op`  
 -   `layer_id` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** identifier of the layer. If null, iterates through all layers (optional, default `null`)
 
-Returns **this** 
+Returns **this**
