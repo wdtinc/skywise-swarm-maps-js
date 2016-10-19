@@ -1,1 +1,8 @@
-node_modules
+#idea files
+/*.iml
+/.idea/
+
+#node files
+/node_modules/
+/dist/
+
