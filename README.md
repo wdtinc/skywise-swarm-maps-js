@@ -17,6 +17,8 @@ run the following commands inside the project directory:
 
 `npm run build`
 
+`npm run start`
+
 Examples can be found in the `examples` directory.
 
 Add your own keys to the `examples/keys.js` file:

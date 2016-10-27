@@ -23,7 +23,8 @@
     "browserify:mapbox-gl": "browserify mapbox-gl.js > dist/skywise-tiles.mapbox-gl.src.js",
     "uglify:mapbox-gl": "uglifyjs dist/skywise-tiles.mapbox-gl.src.js > dist/skywise-tiles.mapbox-gl.js",
     "build:mapbox-gl": "npm run browserify:mapbox-gl && npm run uglify:mapbox-gl",
-    "build": "npm-run-all build:*"
+    "build": "npm-run-all build:*",
+    "start": "http-server ."
   },
   "author": "Jordan Rousseau",
   "license": "MIT",
@@ -33,7 +34,8 @@
     "es6-promise": "^3.2.1",
     "geojson-extent": "^0.3.2",
     "raf": "^3.2.0",
-    "whatwg-fetch": "^1.0.0"
+    "whatwg-fetch": "^1.0.0",
+    "http-server": "^0.9.0"
   },
   "devDependencies": {
     "browserify": "^13.0.0",
