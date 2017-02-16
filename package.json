@@ -26,13 +26,17 @@
     "build": "npm-run-all build:*",
     "start": "http-server ."
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wdtinc/skywise-swarm-maps-js.git"
+  },
   "author": "Jordan Rousseau",
   "license": "MIT",
   "dependencies": {
     "array-find-polyfill": "^0.1.0",
     "es6-object-assign": "^1.0.2",
     "es6-promise": "^3.2.1",
-    "geojson-extent": "^0.3.2",
+    "@mapbox/geojson-extent": "^0.3.2",
     "raf": "^3.2.0",
     "whatwg-fetch": "^1.0.0",
     "http-server": "^0.9.0"
